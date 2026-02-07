@@ -1,0 +1,35 @@
+Electronic Circuit Diagram
+Wiring Breakdown
+1. ARGB LED Section (Pin 3)
+The ARGB LEDs inside your fan are likely WS2812B (5V Addressable).
+
+5V (VCC): Connect to an external 5V power supply or the Arduino 5V pin (if only using one fan).
+
+Data (D): Connect to Arduino Pin 3. Recommendation: Place a 470Ω resistor between Pin 3 and the Fan Data pin to protect against signal spikes.
+
+GND: Connect to Arduino GND.
+
+2. IR Receiver Section (Pin 5)
+Standard 3-pin IR modules (like the TSOP382 or similar) used with the YK-901 remote.
+
+VCC: Connect to Arduino 5V.
+
+GND: Connect to Arduino GND.
+
+OUT (Signal): Connect to Arduino Pin 5.
+
+3. Fan Motor Section (Pin 9)
+Standard fans run on 12V. Never connect the 12V fan power wire directly to the Arduino.
+
+12V (VCC): Connect directly to your 12V power supply.
+
+GND: Connect to the drain of a MOSFET (e.g., IRFZ44N) or the collector of a transistor to allow PWM control.
+
+PWM Signal: Connect Arduino Pin 9 to the gate/base of your transistor/MOSFET.
+
+Important Safety Checklist
+Common Ground: All components (Arduino, Fan, 12V Supply, 5V Supply) must have their GND pins connected together. Without a common ground, the signals will be unstable.
+
+External Power: A single fan with 16 LEDs can draw up to 960mA at full white brightness. If you are using multiple fans, you must use an external 5V power supply, as the Arduino's voltage regulator will overheat and fail.
+
+Capacitor: Adding a 1000µF capacitor across the 5V and GND lines near the fan helps prevent "flickering" when animations change rapidly.
