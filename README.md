@@ -18,7 +18,9 @@ FastLED: For ARGB control
 IRremote: For infrared remote handling
 
 Remote Control Layout (YK-001)
+
 Functionality Mapping:
+
 Row 1 - Main Controls: Power Toggle, Animation Mode Change, Mute (Pause).
 Row 2 - Playback Controls: Previous (Slower animation), Play/Pause, Next (Faster animation).
 Row 3 - Volume/Brightness: Brightness decrease, Brightness increase, Rainbow Effect (EQ).
