@@ -33,3 +33,39 @@ Common Ground: All components (Arduino, Fan, 12V Supply, 5V Supply) must have th
 External Power: A single fan with 16 LEDs can draw up to 960mA at full white brightness. If you are using multiple fans, you must use an external 5V power supply, as the Arduino's voltage regulator will overheat and fail.
 
 Capacitor: Adding a 1000µF capacitor across the 5V and GND lines near the fan helps prevent "flickering" when animations change rapidly.
+
++---------------------------------------+
+            |             ARDUINO NANO              |
+            |                                       |
+            |      [USB]              (5V) [Pin]----+-----------+-------+ (5V External)
+            |      [PORT]            (GND) [Pin]----+-----------|---+---| (GND External)
+            |                                       |           |   |   |
+            | (Digital 3) [D3]------------------[RESISTOR]------|---|---|--> [1. ARGB DATA]
+            |                                  (470 Ohm)        |   |   |
+            | (Digital 5) [D5] <-------------+                  |   |   |
+            |                                |                  |   |   |
+            +--------------------------------|------------------+   |   |
+                                             |                  |   |   |
+       +-----------------------+             |                  |   |   |
+       |     IR RECEIVER       |             |                  |   |   |
+       |      (YK-901)         |             |                  |   |   |
+       |                       |             |                  |   |   |
+       | [ OUT ] [ GND ] [ VCC ]             |                  |   |   |
+       +---|-------|-------|---+             |                  |   |   |
+           |       |       +-----------------|------------------+   |   |
+           +-------|-------------------------+                      |   |
+                   |                                                |   |
+                   +------------------------------------------------+   |
+                                                                        |
+                                                                        |
+       +-----------------------+                                        |
+       |     ARGB LED FAN      |                                        |
+       |      (3-PIN 5V)       |                                        |
+       |                       |                                        |
+       | [ DATA ] [ GND ] [ 5V ]                                        |
+       +---|--------|-------|--+                                        |
+           |        |       +-------------------------------------------+
+           |        |
+           |        +---( Connect to GND Rail )
+           |
+           +------------( Connect to D3 via Resistor )
